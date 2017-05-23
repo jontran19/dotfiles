@@ -1,3 +1,5 @@
-Copy bash_completions folder, .bash_profile, .bashrc, .inputrc, .tmux.conf to home directory
+Copy bash_completions folder, .bash_profile, .bashrc, .inputrc, .tmux.conf, and .vimrc to home directory
+
+copy colors to .vim/colors
 
 spacemacs preferences needs to be revisted later
