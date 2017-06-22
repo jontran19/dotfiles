@@ -1,0 +1,22 @@
+[user]
+	name = Jonathan Tran
+	email = jtran@sandia.gov
+[grep]                                                                                                                           
+  linenumber = true
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = true
+    pager = true
+
+[color "status"]
+    added = green
+    changed = red bold
+    untracked = magenta bold
+
+[color "branch"]
+    remote = yellow
+[push]
+	default = simple
