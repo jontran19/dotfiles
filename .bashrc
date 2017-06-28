@@ -20,7 +20,7 @@ if [ -f ~/bash_completions/kubectl ]; then
     . ~/bash_completions/kubectl
 fi
 
-export TERM='xterm-256color'
+#export TERM='xterm-256color'
 shopt -s histappend
 export HISTTIMEFORMAT="[%Y/%m/%d %T] "
 export HISTFILESIZE=1000000
