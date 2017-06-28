@@ -7,7 +7,9 @@ syntax on
 "colorscheme twilight
 "colorscheme wombat
 colorscheme wwdc16
-set t_Co=256
+:set t_Co=256
+
+highlight Normal ctermfg=250
 
 set number
 
@@ -25,4 +27,3 @@ set number
 :set hlsearch
 :set incsearch
 :set cindent
-
