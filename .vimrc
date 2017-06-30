@@ -27,3 +27,4 @@ set number
 :set hlsearch
 :set incsearch
 :set cindent
+:set textwidth=120
