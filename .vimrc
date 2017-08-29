@@ -24,7 +24,7 @@ set number
 :set shiftwidth=4
 :set expandtab
 :set autoindent
+:set cindent
 :set hlsearch
 :set incsearch
-:set cindent
 :set textwidth=120

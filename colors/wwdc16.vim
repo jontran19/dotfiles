@@ -10,9 +10,9 @@ endif
 let colors_name = 'wwdc16'
 
 if !has('gui_running') && get(g:, "wwdc16_term_trans_bg", 0)
-  hi Normal ctermfg=15 ctermbg=NONE cterm=NONE guifg=#ffffff guibg=NONE gui=NONE
+  hi Normal ctermfg=15 ctermbg=235 cterm=NONE guifg=#ffffff guibg=NONE gui=NONE
 else
-  hi Normal ctermfg=15 ctermbg=234 cterm=NONE guifg=#ffffff guibg=#292c36 gui=NONE
+  hi Normal ctermfg=15 ctermbg=235 cterm=NONE guifg=#ffffff guibg=#292c36 gui=NONE
 endif
 
 hi ColorColumn ctermfg=NONE ctermbg=8 cterm=NONE guifg=NONE guibg=#333333 gui=NONE guisp=NONE
@@ -38,7 +38,7 @@ hi LineNr ctermfg=9 ctermbg=NONE cterm=NONE guifg=#666666 guibg=NONE gui=NONE gu
 hi MatchParen ctermfg=13 ctermbg=15 cterm=NONE,bold,reverse guifg=#8485ce guibg=#ffffff gui=NONE,bold,reverse guisp=NONE
 hi ModeMsg ctermfg=15 ctermbg=NONE cterm=NONE guifg=#ffffff guibg=NONE gui=NONE guisp=NONE
 hi MoreMsg ctermfg=9 ctermbg=NONE cterm=NONE guifg=#666666 guibg=NONE gui=NONE guisp=NONE
-hi NonText ctermfg=15 ctermbg=234 cterm=NONE guifg=#ffffff guibg=NONE gui=NONE guisp=NONE
+hi NonText ctermfg=15 ctermbg=235 cterm=NONE guifg=#ffffff guibg=NONE gui=NONE guisp=NONE
 hi Pmenu ctermfg=0 ctermbg=2 cterm=NONE guifg=#292c36 guibg=#64878f gui=NONE guisp=NONE
 hi PmenuSbar ctermfg=9 ctermbg=8 cterm=NONE guifg=#666666 guibg=#333333 gui=NONE guisp=NONE
 hi PmenuSel ctermfg=15 ctermbg=3 cterm=NONE guifg=#ffffff guibg=#d28e5d gui=NONE guisp=NONE
