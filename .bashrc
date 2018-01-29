@@ -20,7 +20,7 @@ if [ -f ~/bash_completions/kubectl ]; then
     . ~/bash_completions/kubectl
 fi
 
-#export TERM='xterm-256color'
+export TERM='xterm-256color'
 shopt -s histappend
 export HISTTIMEFORMAT="[%Y/%m/%d %T] "
 export HISTFILESIZE=1000000
@@ -32,6 +32,11 @@ shopt -s cmdhist
 VIRTUAL_ENV_DISABLE_PROMPT=1
 source $HOME/venv/bin/activate
 source $HOME/mdp_profile
+
+export PROJECT_SOURCE_DIR=/home/jtran/ssp-programs/src
+export SSP_BUILD_DIR=/home/jtran/ssp-programs/build/ssp-programs-prefix
+export SWIM_BUILD_DIR=/home/jtran/ssp-programs/build/ssp-programs-prefix/src/ssp-programs-build/
+export SSP_DATA_DIR=/home/jtran/ssp-programs/data
 
 # When the shell exits, append to the history file instead of overwriting it
 
