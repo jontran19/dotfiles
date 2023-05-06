@@ -1,0 +1,35 @@
+alias gop='pushd ~/projects'
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias tree='tree -C'
+alias ports='sudo netstat -lnptu'
+
+function rm_build() {
+    local git_dir="$(git rev-parse --show-toplevel)" # Get absolute path of top-level directory
+    local current_dir="$(pwd)" # Get absolute path of current directory
+
+    if [[ "${current_dir}" != "${git_dir}/build"* ]]; then # Check if current directory is under ${git_dir}/build
+        echo "Error: You must run this function from a build folder nested under the top level folder of the Git project."
+        return 1
+    fi
+
+    read -p "Are you sure you want to remove all contents of the build folder? (y/n): " choice
+    if [[ "${choice}" == "y" ]]; then
+        rm -rf "${current_dir}"/*
+        echo "Build folder contents removed."
+    fi
+}
+
+alias rm-build='rm_build'
+
+go_build() {
+    local git_dir="$(git rev-parse --show-toplevel)" # Get absolute path of top-level directory
+    if [ ! -d "${git_dir}/build" ]; then # Check if ${git_dir}/build doesn't exist
+        mkdir "${git_dir}/build" # Create ${git_dir}/build if it doesn't exist
+    fi
+    pushd "${git_dir}/build" > /dev/null # Change directory to ${git_dir}/build and push it onto the directory stack
+}
+
+alias gob='go_build'

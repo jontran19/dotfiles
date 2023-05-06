@@ -1,0 +1,88 @@
+syntax on
+filetype plugin on
+filetype plugin indent on
+
+"colorscheme desert256
+"colorscheme jeyllybeans
+"colorscheme midnight
+"colorscheme sierra
+"colorscheme twilight
+"colorscheme wombat
+colorscheme wwdc16
+:set t_Co=256
+
+highlight Normal ctermfg=250
+
+set number
+set pastetoggle=<F3>
+
+:autocmd FileType c,cpp set formatoptions=croql
+
+:ab #i #include
+:ab #b /********************************************************
+:ab #e ********************************************************/
+:ab #l /*------------------------------------------------------*/
+
+:set wildmenu
+:set wildmode-longest:list,full
+
+:set nowrap
+:set tabstop=4
+:set shiftwidth=4
+:set softtabstop=4
+:set expandtab
+:set autoindent
+:set cindent
+:set hlsearch
+:set incsearch
+:set textwidth=120
+
+:set cinc=t0,g0,c0,C1,N-s       " do not use indetnt function return types, do not indent public/private/protected
+                                " (see: http://vimdoc.sourceforge.net/htmldoc/indent.html)
+                                " do not indent within a namespace
+:set t_ut=                      "  allows background colors to work properly in tmux
+
+noremap<F8> :call ToggleMouseSelect()<CR><Esc>
+function! ToggleMouseSelect()
+    if(&mouse == "")
+        execute ":set mouse=a"
+        echo ":set mouse=a"
+    else
+        execute ":set mouse="
+        echo ":set mouse="
+    endif
+endfunction
+
+command wS %s/\s\+$
+nnoremap<F2> :call CleanupTrailingWhitespace()<CR><Esc><c-o>
+function ! CleanupTrailingWhitespace()
+    execute ":WS"
+endfunction
+
+" Set tabs
+set showtabline=2
+
+highlight Pmenu ctermbg=27 ctermfg=black
+highlight PmenuSe1 ctermbg=81 ctermfg=black
+
+inoremap jk <Esc>
+inoremap jj <Esc>
+
+let &colorcolumn="100,".join(range(120,999),",")
+
+set vimnfo='10,\"100,:20,%,n~/.viminfo"
+if has("autocmd")
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * all clearmatches()
+
+nmap <silent> <c-k> :wincomd k<CR>
+nmap <silent> <c-j> :wincomd j<CR>
+nmap <silent> <c-h> :wincomd h<CR>
+nmap <silent> <c-l> :wincomd l<CR>

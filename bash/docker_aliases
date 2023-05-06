@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# tab completion for docker images
+_docker_image_completion() {
+  COMPREPLY=($(docker images --format "{{.Repository}}:{{.Tag}}" | grep -F "${COMP_WORDS[COMP_CWORD]}"))
+}
+
+# tab completion for docker containers
+_docker_container_completion() {
+  COMPREPLY=($(docker ps -a --format "{{.Names}}" | grep -F "${COMP_WORDS[COMP_CWORD]}"))
+}
+
+# shorthand for `docker ps`
+dps() {
+    docker ps
+}
+
+# shorthand for `docker images`
+dimages() {
+    docker images
+}
+
+# shorthand for `docker stop`
+dstop() {
+    docker stop "$1"
+}
+
+# shorthand for `docker rm`
+dremove() {
+    docker rm "$1"
+}
+
+# shorthand for `docker logs`
+dlogs() {
+    docker logs "$1"
+}
+
+# shorthand for `docker exec`
+dexec() {
+    docker exec -it "$1" "$2"
+}
+
+# shorthand for `docker pull`
+dpull() {
+    docker pull "$1"
+}
+
+dcl() {
+    docker container ls
+}
+
+# register tab completion for docker images
+complete -F _docker_image_completion dimages dpull
+
+# register tab completion for docker containers
+complete -F _docker_container_completion dstop dremove dlogs dexec

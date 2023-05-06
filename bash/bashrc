@@ -1,4 +1,6 @@
 # .bashrc
+export CONFIG_DIR=$HOME/config
+export VENV_DIR=$HOME/venvs
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -21,6 +23,9 @@ if [ -f ~/bash_completions/kubectl ]; then
 fi
 
 export TERM='xterm-256color'
+export GREP_COLOR="1;35"
+export LESS="eirMX"
+
 shopt -s histappend
 export HISTTIMEFORMAT="[%Y/%m/%d %T] "
 export HISTFILESIZE=1000000
@@ -30,7 +35,7 @@ export HISTIGNORE=ls:h:lt:l:d:..:[1-9]:1[0-4]
 export HISTCONTROL=ignoredups:erasedups  
 shopt -s cmdhist
 VIRTUAL_ENV_DISABLE_PROMPT=1
-source $HOME/venv/bin/activate
+#source $HOME/venv/bin/activate
 
 export PROJECT_SOURCE_DIR=/home/jtran/projects/src
 
@@ -44,7 +49,30 @@ export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; histor
 
 # User specific aliases and functions
 alias em='emacsclient -nw'
-alias feh='find -name .#*'
+alias feh='find -iname .#*'
+
+# ANSIcolorcodes
+RS="\[\033[0m\]"            #reset
+HC="\[\033[1m\]"            #hicolor
+UL="\[\033[4m\]"            #underline
+INV="\[\033[7m\]"           #inversebackgroundandforeground
+FBLK="\[\033[30m\]"         #foregroundblack
+FRED="\[\033[31:lm\]"       #foregroundred
+FGRN="\[\033[32:lm\]"       #foregroundgreen
+FYEL="\[\033[33:lm\]"       #foregroundyellow
+FBLE="\[\033[34:lm\]"       #foregroundblue
+FMAG="\[\033[35:lm\]"       #foregroundmagenta
+FMAGB="\[\033[1;35m\]"      #inverseforegroundmagenta
+FCYN="\[\033[36:1m\]"       #foregroundcyan
+FWHT="\[\033[37m\]"         #foregroundwhite
+BBLK="\[\033[40m\]"         #backgroundblack
+BRED="\[\033[41m\]"         #backgroundred
+BGRN="\[\033[42m\]"         #backgroundgreen
+BYEL="\[\033[43m\]"         #backgroundyellow
+BBLE="\[\033[44m\]"         #backgroundblue
+BMAG="\[\033[45m\]"         #backgroundmagenta
+BCYN="\[\033[46m\]"         #backgroundcyan
+BWHT="\[\033[47m\]"         #backgroundwhite
 
 if [ -f ~/bash_completions/.git-prompt.sh ]; then
     source ~/bash_completions/.git-prompt.sh
@@ -64,3 +92,24 @@ function gg()
     fi
 }
 
+# Pull in aliases
+if [ -f $CONFIG_DIR/bash/bash_aliases ]; then
+    . $CONFIG_DIR/bash/bash_aliases
+fi
+
+# Pull in aliases
+if [ -f $CONFIG_DIR/bash/docker_aliases ]; then
+    . $CONFIG_DIR/bash/docker_aliases
+fi
+
+# Key bindings for searching command history
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+
+# Key bindings for jumping between words
+bind '"\e[1;5C": forward-word' # Ctrl+Right
+bind '"\e[1;5D": backward-word' # Ctrl+Left
+
+# Home and end buttons move to beginning and end of line
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
