@@ -2,11 +2,25 @@
     PreloadIndex = true
     editor = vim
 [user]
-    name = jtran
-    email = jontran19@gmail.com
+	name = Jon Tran
+	email = j.tran@slingshotaerospace.com
 [alias]
     lg = log --graph --pretty=format:'%Cred%h%Creset -%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --all
+    co = checkout
+    ci = commit
+    st = status
+    br = branch
+    hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+    type = cat-file -t
+    dump = cat-file -p
 [push]
     default = simple
 [color]
     ui = auto
+[grep]
+	lineNumber = true
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f

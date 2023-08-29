@@ -1,10 +1,23 @@
-alias gop='pushd ~/projects'
+gop() {
+    local folder_name="$1"
+    local project_folder="$HOME/projects"
+
+    if [ -n "$folder_name" ]; then
+        project_folder="$project_folder/$folder_name"
+    fi
+
+    if [ -d "$project_folder" ]; then
+        pushd "$project_folder" >/dev/null
+    else
+        echo "Folder '$folder_name' does not exist under ~/projects/"
+    fi
+}
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias tree='tree -C'
-alias ports='sudo netstat -lnptu'
+# alias tree='tree -C'
+# alias ports='sudo netstat -lnptu'
 
 function rm_build() {
     local git_dir="$(git rev-parse --show-toplevel)" # Get absolute path of top-level directory
@@ -25,11 +38,29 @@ function rm_build() {
 alias rm-build='rm_build'
 
 go_build() {
-    local git_dir="$(git rev-parse --show-toplevel)" # Get absolute path of top-level directory
-    if [ ! -d "${git_dir}/build" ]; then # Check if ${git_dir}/build doesn't exist
-        mkdir "${git_dir}/build" # Create ${git_dir}/build if it doesn't exist
+    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == "true" ]]; then
+        local git_dir="$(git rev-parse --show-toplevel)" # Get absolute path of top-level directory
+        if [ ! -d "${git_dir}/build" ]; then # Check if ${git_dir}/build doesn't exist
+            mkdir "${git_dir}/build" # Create ${git_dir}/build if it doesn't exist
+        fi
+        pushd "${git_dir}/build" > /dev/null # Change directory to ${git_dir}/build and push it onto the directory stack
+    else
+        echo "Not in a git directory; can't use function"
+
     fi
-    pushd "${git_dir}/build" > /dev/null # Change directory to ${git_dir}/build and push it onto the directory stack
 }
 
 alias gob='go_build'
+
+alias gs='git status '
+alias ga='git add '
+alias gb='git branch '
+alias gc='git commit'
+alias gd='git diff'
+alias gco='git checkout '
+alias gk='gitk --all&'
+alias gx='gitx --all'
+
+alias got='git '
+alias get='git '
+alias gti='git '
