@@ -132,7 +132,7 @@ gop() {
 }
 
 _gop_complete() {
-    local projects_dir="$HOME/PROJECTS"
+    local projects_dir="$HOME/projects"
     local cur="${COMP_WORDS[COMP_CWORD]}"
 
     COMPREPLY=()
