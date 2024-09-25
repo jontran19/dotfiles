@@ -47,6 +47,7 @@ def prompt_for_copy_or_symlink(src_file, dst_file, symlink=True):
 def prompt_for_all_files(symlink):
     files = [
         ('bash/bashrc', '.bashrc'),
+        ('bash/inputrc', '.inputrc'),
         ('tmux/tmux.conf', '.tmux.conf'),
         ('vim/vimrc', '.vimrc'),
         ('vim/colors', '.vim/colors'),
